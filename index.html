@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="exchange rate, currency converter, forex, 4rexify">
+    <meta name="author" content="Olumide Micheal">
+    <meta name="description" content="currency converter, exchange rate platform">
+    <meta property="og:title" content="4rexify exchange rate converter">
+    <meta property="og:description" content="Foreign exchange rate made easier, much better, with a single click">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/src/images/og-image.png">
+    <link rel="icon" href="./src/images/title-icon.png" type="image/4rexify-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;400;800&family=Montserrat&family=Raleway+Dots&display=swap" rel="stylesheet">
+    <script defer src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="/dist/output.css" rel="stylesheet">
+    <title>4Rexify - Foreign Exchange Rate Platform</title>
+</head>
+<style>
+    .hero {
+        background-image: url('./src/images/businessman.png');
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+    
+    .form-control {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+    
+    .form-control small {
+        color: hsl(0, 100%, 74%);
+        position: absolute;
+        bottom: -18px;
+        right: 0;
+        opacity: 0;
+        text-align: right;
+    }
+    
+    .form-control img {
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        height: 20px;
+    }
+    
+    .form-control.error img {
+        opacity: 1;
+    }
+    
+    .form-control small {
+        opacity: 0;
+    }
+    
+    .form-control.error small {
+        opacity: 1;
+    }
+</style>
+
+<body class="bg-sailorBlue overflow-x-hidden">
+
+
+    <!-- DESKTOP AND TABLET NAVBAR SECTION -->
+    <header class="w-full h-16 flex items-center justify-center bg-mint">
+
+        <nav class="w-[90%] flex items-center justify-between">
+            <div class="sm:w-[22%] lg:w-[11%] md:w-[13%] cursor-pointer">
+                <a href="index.html">
+                    <img src="./src/images/4Rexify_Footer.png" alt="logo">
+                </a>
+            </div>
+
+            <div class=" sm:hidden md:flex md:gap-3 lg:gap-6 items-center justify-center">
+                <ul class="flex items-center lg:gap-6 md:gap-3 text-sailorBlue font-Serif">
+                    <li class="hover:underline cursor-pointer">
+                        <a href="#about" class="lg:text-normal md:text-small">
+                            How it works?
+                        </a>
+                    </li>
+                    <li class="hover:underline cursor-pointer">
+                        <a href="#convert" class="lg:text-normal md:text-small">
+                            Get Started
+                        </a>
+                    </li>
+                    <li class="hover:underline cursor-pointer">
+                        <a href="#blogs" class="lg:text-normal md:text-small">
+                            Blogs
+                        </a>
+                    </li>
+                    <li class="hover:underline cursor-pointer">
+                        <a href="#contact" class="lg:text-normal md:text-small">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex gap-4 md:flex sm:hidden">
+                <a href="./public/pages/login.html">
+                    <button type="button" class="font-Serif text-center focus:outline-none text-sailorBlue border-solid border-2 border-sailorBlue bg-none font-medium sm:hidden md:flex rounded-lg lg:px-6 lg:py-2.5 md:px-4 md:py-2 lg:text-normal md:text-small m-auto hover:bg-sailorBlue hover:text-mint hover:scale-95">
+                        Login
+                    </button>
+                </a>
+                <a href="./public/pages/signup.html">
+                    <button type="button" class="font-Serif text-center focus:outline-none text-mint bg-sailorBlue border-solid border-2 border-sailorBlue focus:ring-2 font-medium sm:hidden md:flex rounded-lg lg:px-6 lg:py-2.5 md:px-4 md:py-2 lg:text-normal md:text-small m-auto hover:bg-mint hover:text-sailorBlue hover:scale-95">
+                        Sign up
+                    </button>
+                </a>
+            </div>
+
+            <div class="md:hidden mobile-action-menu mr-6">
+                <div class="mobile-action-menu">
+                    <div class="menu">
+                        <i class="fa-solid fa-bars text-sailorBlue"></i>
+                    </div>
+                    <div class="close hidden">
+                        <i class="fa-solid fa-xmark text-sailorBlue"></i>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    
+    <!-- MOBILE NAVBAR -->
+    <div class="w-screen h-screen absolute z-10 md:hidden flex flex-col items-start gap-10 mobile-nav-links sm:hidden bg-sailorBlue">
+        <div class="flex flex-col items-center ml-10 mt-20">
+            <ul class="text-white font-Serif justify-between gap-2 flex flex-col">
+                <li class="text-white">
+                    <a href="#about">
+                        How it works?
+                    </a>
+                </li>
+                <li class="text-white">
+                    <a href="#convert">
+                        Get Started
+                    </a>
+                </li>
+                <li class="text-white">
+                    <a href="#blogs">
+                        Blogs
+                    </a>
+                </li>
+                <li class="text-white">
+                    <a href="#contact">
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col gap-4 ml-10">
+            <a href="/public/pages/login.html">
+                <button type="button" class="font-Serif text-center text-mint border-solid border-mint border-2 bg-none font-medium rounded-lg px-6 py-2">
+                    Login
+                </button>
+            </a>
+            <a href="/public/pages/signup.html">
+                <button type="button" class="font-Serif text-center text-sailorBlue bg-mint font-medium rounded-lg px-5 py-2">
+                    Sign up
+                </button>
+            </a>
+        </div>
+    </div>
+
+
+
+    <!-- HERO SECTION -->
+    <main class="xl:h-[90vh] md:h-[70vh] lg:h-[60vh] sm:h-[90vh] w-full p-0 m-0 flex items-center justify-center hero">
+
+        <!-- CONTAINER -->
+        <div class="w-[90%] h-[90%] md:flex flex-col md:justify-center md:items-center">
+            <h1 class="font-Serif text-white font-bold xl:text-big md:text-semiBig sm:text-semiBig w-full md:text-center sm:text-left">
+                Foreign Exchange Rate
+            </h1>
+            <div class="lg:mb-[2rem] md:mb-[1rem]">
+                <span class="auto font-Serif text-mint font-bold xl:text-big md:text-semiBig text-center"></span>
+            </div>
+            <sub class="font-Serif text-white text-normal">
+                “I believe in analysis and not forecasting.” -Nicolas Darvas
+            </sub>
+        </div>
+
+    </main>
+
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block p-3 text-sailorBlue bg-mint font-bold text-xs leading-tight rounded-full shadow-md transition duration-150 ease-in-out bottom-5 right-5 z-10 fixed" id="btn-back-to-top" style="display: hidden;">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+        </svg>
+    </button>
+    
+
+    <!-- HOW TO USE 4REXIFY SECTION -->
+    <section class="w-full xl:h-[100vh] md:h-[70vh] lg:h-[60vh] sm:mb-6 md:mb-0 flex items-center justify-center" id="about">
+        <div class="w-[90%] md:h-[80%] lg:h-[90%] sm:h-[100%] flex flex-col sm:gap-6 md:gap-10">
+
+            <div class="flex h-[5%] items-start">
+                <h1 class="text-mint font-Serif font-bold text-big text-left w-full md:mt-0 sm:mt-10 md:mb-0 sm:mb-6 leading-none xl:text-big md:text-semiBig sm:text-semiBig">
+                    How it works?
+                </h1>
+            </div>
+
+
+            <div class="w-full h-full flex md:flex-row sm:flex-col-reverse items-center justify-center">
+                <div class="md:w-1/2 sm:w-full h-full flex flex-col justify-center">
+
+                    <div>
+                        <h2 class="font-bold font-Serif md:text-medium sm:text-normal text-mint">
+                            Step One:
+                        </h2>
+                        <p class="font-Montserrat text-white md:mb-3 sm:mb-6 sm:text-small md:text-normal">
+                            Select an initial currency
+                        </p>
+                        <div class="text-right md:mb-3 sm:mb-6">
+                            <h2 class="font-bold font-Serif xl:text-medium md:text-medium sm:text-normal text-mint">
+                                Step Two:
+                            </h2>
+                            <p class="font-Montserrat text-white sm:text-small md:text-normal">
+                                Enter your preffered value
+                            </p>
+                        </div>
+                        <h2 class="font-bold font-Serif xl:text-medium md:text-medium sm:text-normal text-mint">
+                            Step Three:
+                        </h2>
+                        <p class="font-Montserrat text-white md:mb-3 sm:mb-6 sm:text-small md:text-normal">
+                            Select the currency you wish to convert to
+                        </p>
+                        <div class="text-right md:mb-3 sm:mb-10">
+                            <h2 class="font-bold font-Serif xl:text-medium md:text-medium sm:text-normal text-mint">
+                                Step Four:
+                            </h2>
+                            <p class="font-Montserrat text-white sm:text-small md:text-normal">
+                                See the magic!
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <a href="#convert">
+                            <button type="button" class="font-Serif text-center text-sailorBlue bg-mint font-medium sm:text-small md:text-normal rounded-lg md:px-7 md:py-3.5 sm:px-5 sm:py-3 hover:scale-95 mt-10 sm:mt-3">
+                                Let's do this!
+                            </button>
+                        </a>
+
+                    </div>
+                    
+
+                </div>
+
+                <div class="md:w-1/2 sm:w-full h-full flex items-center justify-center">
+                
+                    <img src="./src/images/how.png" alt="currencies" class="md:w-3/6 h-full object-contain">
+
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CONVERTER SECTION -->
+    <section id="convert" class="w-full lg:h-[100vh] md:h-[60vh] flex flex-col items-center justify-center sm:my-16 md:my-0">
+        <div class="w-[90%] flex h-[80%] flex-col">
+            <div class="w-full flex items-start  mb-6">
+                <h1 class="text-mint font-Serif font-bold xl:text-big md:text-semiBig sm:text-semiBig">
+                    Make your conversion
+                </h1>
+            </div>
+
+            <div class="w-full flex flex-col justify-between gap-3">
+                <form class="flex flex-col gap-6 w-full h-full">
+                    <div class="flex md:flex-row sm:flex-col justify-between">
+                        <div class="md:w-[45%] sm:w-full flex flex-col">
+                            <label class="font-bold font-Montserrat text-white mb-2">Select a currency</label>
+                            <select id="from" class="w-full h-[3.5rem] font-Montserrat font-bold md:text-normal sm:text-small rounded cursor-pointer outline-none active:outline-none pl-4 appearance-none">
+                                <option value="AFN">AFN - Afghan Afghani</option>
+                                <option value="ALL">ALL - Albanian Lek</option>
+                                <option value="DZD">DZD - Algerian Dinar</option>
+                                <option value="AOA">AOA - Angolan Kwanza</option>
+                                <option value="ARS">ARS - Argentine Peso</option>
+                                <option value="AMD">AMD - Armenian Dram</option>
+                                <option value="AWG">AWG - Aruban Florin</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="AZN">AZN - Azerbaijani Manat</option>
+                                <option value="BSD">BSD - Bahamian Dollar</option>
+                                <option value="BHD">BHD - Bahraini Dinar</option>
+                                <option value="BDT">BDT - Bangladeshi Taka</option>
+                                <option value="BBD">BBD - Barbadian Dollar</option>
+                                <option value="BYR">BYR - Belarusian Ruble</option>
+                                <option value="BEF">BEF - Belgian Franc</option>
+                                <option value="BZD">BZD - Belize Dollar</option>
+                                <option value="BMD">BMD - Bermudan Dollar</option>
+                                <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                                <option value="BTC">BTC - Bitcoin</option>
+                                <option value="BOB">BOB - Bolivian Boliviano</option>
+                                <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                                <option value="BWP">BWP - Botswanan Pula</option>
+                                <option value="BRL">BRL - Brazilian Real</option>
+                                <option value="GBP">GBP - British Pound Sterling</option>
+                                <option value="BND">BND - Brunei Dollar</option>
+                                <option value="BGN">BGN - Bulgarian Lev</option>
+                                <option value="BIF">BIF - Burundian Franc</option>
+                                <option value="KHR">KHR - Cambodian Riel</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="CVE">CVE - Cape Verdean Escudo</option>
+                                <option value="KYD">KYD - Cayman Islands Dollar</option>
+                                <option value="XOF">XOF - CFA Franc BCEAO</option>
+                                <option value="XAF">XAF - CFA Franc BEAC</option>
+                                <option value="XPF">XPF - CFP Franc</option>
+                                <option value="CLP">CLP - Chilean Peso</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                                <option value="COP">COP - Colombian Peso</option>
+                                <option value="KMF">KMF - Comorian Franc</option>
+                                <option value="CDF">CDF - Congolese Franc</option>
+                                <option value="CRC">CRC - Costa Rican ColÃ³n</option>
+                                <option value="HRK">HRK - Croatian Kuna</option>
+                                <option value="CUC">CUC - Cuban Convertible Peso</option>
+                                <option value="CZK">CZK - Czech Republic Koruna</option>
+                                <option value="DKK">DKK - Danish Krone</option>
+                                <option value="DJF">DJF - Djiboutian Franc</option>
+                                <option value="DOP">DOP - Dominican Peso</option>
+                                <option value="XCD">XCD - East Caribbean Dollar</option>
+                                <option value="EGP">EGP - Egyptian Pound</option>
+                                <option value="ERN">ERN - Eritrean Nakfa</option>
+                                <option value="EEK">EEK - Estonian Kroon</option>
+                                <option value="ETB">ETB - Ethiopian Birr</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="FKP">FKP - Falkland Islands Pound</option>
+                                <option value="FJD">FJD - Fijian Dollar</option>
+                                <option value="GMD">GMD - Gambian Dalasi</option>
+                                <option value="GEL">GEL - Georgian Lari</option>
+                                <option value="DEM">DEM - German Mark</option>
+                                <option value="GHS">GHS - Ghanaian Cedi</option>
+                                <option value="GIP">GIP - Gibraltar Pound</option>
+                                <option value="GRD">GRD - Greek Drachma</option>
+                                <option value="GTQ">GTQ - Guatemalan Quetzal</option>
+                                <option value="GNF">GNF - Guinean Franc</option>
+                                <option value="GYD">GYD - Guyanaese Dollar</option>
+                                <option value="HTG">HTG - Haitian Gourde</option>
+                                <option value="HNL">HNL - Honduran Lempira</option>
+                                <option value="HKD">HKD - Hong Kong Dollar</option>
+                                <option value="HUF">HUF - Hungarian Forint</option>
+                                <option value="ISK">ISK - Icelandic KrÃ³na</option>
+                                <option value="INR">INR - Indian Rupee</option>
+                                <option value="IDR">IDR - Indonesian Rupiah</option>
+                                <option value="IRR">IRR - Iranian Rial</option>
+                                <option value="IQD">IQD - Iraqi Dinar</option>
+                                <option value="ILS">ILS - Israeli New Sheqel</option>
+                                <option value="ITL">ITL - Italian Lira</option>
+                                <option value="JMD">JMD - Jamaican Dollar</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="JOD">JOD - Jordanian Dinar</option>
+                                <option value="KZT">KZT - Kazakhstani Tenge</option>
+                                <option value="KES">KES - Kenyan Shilling</option>
+                                <option value="KWD">KWD - Kuwaiti Dinar</option>
+                                <option value="KGS">KGS - Kyrgystani Som</option>
+                                <option value="LAK">LAK - Laotian Kip</option>
+                                <option value="LVL">LVL - Latvian Lats</option>
+                                <option value="LBP">LBP - Lebanese Pound</option>
+                                <option value="LSL">LSL - Lesotho Loti</option>
+                                <option value="LRD">LRD - Liberian Dollar</option>
+                                <option value="LYD">LYD - Libyan Dinar</option>
+                                <option value="LTL">LTL - Lithuanian Litas</option>
+                                <option value="MOP">MOP - Macanese Pataca</option>
+                                <option value="MKD">MKD - Macedonian Denar</option>
+                                <option value="MGA">MGA - Malagasy Ariary</option>
+                                <option value="MWK">MWK - Malawian Kwacha</option>
+                                <option value="MYR">MYR - Malaysian Ringgit</option>
+                                <option value="MVR">MVR - Maldivian Rufiyaa</option>
+                                <option value="MRO">MRO - Mauritanian Ouguiya</option>
+                                <option value="MUR">MUR - Mauritian Rupee</option>
+                                <option value="MXN">MXN - Mexican Peso</option>
+                                <option value="MDL">MDL - Moldovan Leu</option>
+                                <option value="MNT">MNT - Mongolian Tugrik</option>
+                                <option value="MAD">MAD - Moroccan Dirham</option>
+                                <option value="MZM">MZM - Mozambican Metical</option>
+                                <option value="MMK">MMK - Myanmar Kyat</option>
+                                <option value="NAD">NAD - Namibian Dollar</option>
+                                <option value="NPR">NPR - Nepalese Rupee</option>
+                                <option value="ANG">ANG - Netherlands Antillean Guilder</option>
+                                <option value="TWD">TWD - New Taiwan Dollar</option>
+                                <option value="NZD">NZD - New Zealand Dollar</option>
+                                <option value="NIO">NIO - Nicaraguan CÃ³rdoba</option>
+                                <option value="NGN" selected="select">NGN - Nigerian Naira</option>
+                                <option value="KPW">KPW - North Korean Won</option>
+                                <option value="NOK">NOK - Norwegian Krone</option>
+                                <option value="OMR">OMR - Omani Rial</option>
+                                <option value="PKR">PKR - Pakistani Rupee</option>
+                                <option value="PAB">PAB - Panamanian Balboa</option>
+                                <option value="PGK">PGK - Papua New Guinean Kina</option>
+                                <option value="PYG">PYG - Paraguayan Guarani</option>
+                                <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+                                <option value="PHP">PHP - Philippine Peso</option>
+                                <option value="PLN">PLN - Polish Zloty</option>
+                                <option value="QAR">QAR - Qatari Rial</option>
+                                <option value="RON">RON - Romanian Leu</option>
+                                <option value="RUB">RUB - Russian Ruble</option>
+                                <option value="RWF">RWF - Rwandan Franc</option>
+                                <option value="SVC">SVC - Salvadoran ColÃ³n</option>
+                                <option value="WST">WST - Samoan Tala</option>
+                                <option value="SAR">SAR - Saudi Riyal</option>
+                                <option value="RSD">RSD - Serbian Dinar</option>
+                                <option value="SCR">SCR - Seychellois Rupee</option>
+                                <option value="SLL">SLL - Sierra Leonean Leone</option>
+                                <option value="SGD">SGD - Singapore Dollar</option>
+                                <option value="SKK">SKK - Slovak Koruna</option>
+                                <option value="SBD">SBD - Solomon Islands Dollar</option>
+                                <option value="SOS">SOS - Somali Shilling</option>
+                                <option value="ZAR">ZAR - South African Rand</option>
+                                <option value="KRW">KRW - South Korean Won</option>
+                                <option value="XDR">XDR - Special Drawing Rights</option>
+                                <option value="LKR">LKR - Sri Lankan Rupee</option>
+                                <option value="SHP">SHP - St. Helena Pound</option>
+                                <option value="SDG">SDG - Sudanese Pound</option>
+                                <option value="SRD">SRD - Surinamese Dollar</option>
+                                <option value="SZL">SZL - Swazi Lilangeni</option>
+                                <option value="SEK">SEK - Swedish Krona</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="SYP">SYP - Syrian Pound</option>
+                                <option value="STD">STD - São Tomé and Príncipe Dobra</option>
+                                <option value="TJS">TJS - Tajikistani Somoni</option>
+                                <option value="TZS">TZS - Tanzanian Shilling</option>
+                                <option value="THB">THB - Thai Baht</option>
+                                <option value="TOP">TOP - Tongan pa'anga</option>
+                                <option value="TTD">TTD - Trinidad & Tobago Dollar</option>
+                                <option value="TND">TND - Tunisian Dinar</option>
+                                <option value="TRY">TRY - Turkish Lira</option>
+                                <option value="TMT">TMT - Turkmenistani Manat</option>
+                                <option value="UGX">UGX - Ugandan Shilling</option>
+                                <option value="UAH">UAH - Ukrainian Hryvnia</option>
+                                <option value="AED">AED - United Arab Emirates Dirham</option>
+                                <option value="UYU">UYU - Uruguayan Peso</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="UZS">UZS - Uzbekistan Som</option>
+                                <option value="VUV">VUV - Vanuatu Vatu</option>
+                                <option value="VEF">VEF - Venezuelan BolÃ­var</option>
+                                <option value="VND">VND - Vietnamese Dong</option>
+                                <option value="YER">YER - Yemeni Rial</option>
+                                <option value="ZMK">ZMK - Zambian Kwacha</option>
+                            </select>
+                        </div>
+                        <div class="md:w-[45%] sm:w-full sm:mt-6 md:mt-0 flex flex-col">
+                            <label class="font-bold font-Montserrat text-white mb-2">Enter a value</label>
+                            <input type="number" id="amount" class="w-full h-[3.5rem] font-Montserrat font-bold rounded cursor-pointer pl-4 md:text-normal sm:text-small outline-none active:outline-none"/>
+                        </div>
+                    </div>
+                    
+
+                    <div class="flex md:flex-row sm:flex-col w-full align-center justify-between">
+                        <div class="md:w-[45%] sm:w-full flex flex-col justify-between sm:mt-3 md:mt-0">
+                            <label class="font-bold font-Montserrat text-white mb-2">Convert to</label>
+                            <select id="to" class="w-full h-[3.5rem] font-Montserrat font-bold md:text-normal sm:text-small rounded cursor-pointer pl-4 outline-none active:outline-none appearance-none">
+                                <option value="AFN">AFN - Afghan Afghani</option>
+                                <option value="ALL">ALL - Albanian Lek</option>
+                                <option value="DZD">DZD - Algerian Dinar</option>
+                                <option value="AOA">AOA - Angolan Kwanza</option>
+                                <option value="ARS">ARS - Argentine Peso</option>
+                                <option value="AMD">AMD - Armenian Dram</option>
+                                <option value="AWG">AWG - Aruban Florin</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="AZN">AZN - Azerbaijani Manat</option>
+                                <option value="BSD">BSD - Bahamian Dollar</option>
+                                <option value="BHD">BHD - Bahraini Dinar</option>
+                                <option value="BDT">BDT - Bangladeshi Taka</option>
+                                <option value="BBD">BBD - Barbadian Dollar</option>
+                                <option value="BYR">BYR - Belarusian Ruble</option>
+                                <option value="BEF">BEF - Belgian Franc</option>
+                                <option value="BZD">BZD - Belize Dollar</option>
+                                <option value="BMD">BMD - Bermudan Dollar</option>
+                                <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                                <option value="BTC">BTC - Bitcoin</option>
+                                <option value="BOB">BOB - Bolivian Boliviano</option>
+                                <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                                <option value="BWP">BWP - Botswanan Pula</option>
+                                <option value="BRL">BRL - Brazilian Real</option>
+                                <option value="GBP">GBP - British Pound Sterling</option>
+                                <option value="BND">BND - Brunei Dollar</option>
+                                <option value="BGN">BGN - Bulgarian Lev</option>
+                                <option value="BIF">BIF - Burundian Franc</option>
+                                <option value="KHR">KHR - Cambodian Riel</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="CVE">CVE - Cape Verdean Escudo</option>
+                                <option value="KYD">KYD - Cayman Islands Dollar</option>
+                                <option value="XOF">XOF - CFA Franc BCEAO</option>
+                                <option value="XAF">XAF - CFA Franc BEAC</option>
+                                <option value="XPF">XPF - CFP Franc</option>
+                                <option value="CLP">CLP - Chilean Peso</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                                <option value="COP">COP - Colombian Peso</option>
+                                <option value="KMF">KMF - Comorian Franc</option>
+                                <option value="CDF">CDF - Congolese Franc</option>
+                                <option value="CRC">CRC - Costa Rican ColÃ³n</option>
+                                <option value="HRK">HRK - Croatian Kuna</option>
+                                <option value="CUC">CUC - Cuban Convertible Peso</option>
+                                <option value="CZK">CZK - Czech Republic Koruna</option>
+                                <option value="DKK">DKK - Danish Krone</option>
+                                <option value="DJF">DJF - Djiboutian Franc</option>
+                                <option value="DOP">DOP - Dominican Peso</option>
+                                <option value="XCD">XCD - East Caribbean Dollar</option>
+                                <option value="EGP">EGP - Egyptian Pound</option>
+                                <option value="ERN">ERN - Eritrean Nakfa</option>
+                                <option value="EEK">EEK - Estonian Kroon</option>
+                                <option value="ETB">ETB - Ethiopian Birr</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="FKP">FKP - Falkland Islands Pound</option>
+                                <option value="FJD">FJD - Fijian Dollar</option>
+                                <option value="GMD">GMD - Gambian Dalasi</option>
+                                <option value="GEL">GEL - Georgian Lari</option>
+                                <option value="DEM">DEM - German Mark</option>
+                                <option value="GHS">GHS - Ghanaian Cedi</option>
+                                <option value="GIP">GIP - Gibraltar Pound</option>
+                                <option value="GRD">GRD - Greek Drachma</option>
+                                <option value="GTQ">GTQ - Guatemalan Quetzal</option>
+                                <option value="GNF">GNF - Guinean Franc</option>
+                                <option value="GYD">GYD - Guyanaese Dollar</option>
+                                <option value="HTG">HTG - Haitian Gourde</option>
+                                <option value="HNL">HNL - Honduran Lempira</option>
+                                <option value="HKD">HKD - Hong Kong Dollar</option>
+                                <option value="HUF">HUF - Hungarian Forint</option>
+                                <option value="ISK">ISK - Icelandic KrÃ³na</option>
+                                <option value="INR">INR - Indian Rupee</option>
+                                <option value="IDR">IDR - Indonesian Rupiah</option>
+                                <option value="IRR">IRR - Iranian Rial</option>
+                                <option value="IQD">IQD - Iraqi Dinar</option>
+                                <option value="ILS">ILS - Israeli New Sheqel</option>
+                                <option value="ITL">ITL - Italian Lira</option>
+                                <option value="JMD">JMD - Jamaican Dollar</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="JOD">JOD - Jordanian Dinar</option>
+                                <option value="KZT">KZT - Kazakhstani Tenge</option>
+                                <option value="KES">KES - Kenyan Shilling</option>
+                                <option value="KWD">KWD - Kuwaiti Dinar</option>
+                                <option value="KGS">KGS - Kyrgystani Som</option>
+                                <option value="LAK">LAK - Laotian Kip</option>
+                                <option value="LVL">LVL - Latvian Lats</option>
+                                <option value="LBP">LBP - Lebanese Pound</option>
+                                <option value="LSL">LSL - Lesotho Loti</option>
+                                <option value="LRD">LRD - Liberian Dollar</option>
+                                <option value="LYD">LYD - Libyan Dinar</option>
+                                <option value="LTL">LTL - Lithuanian Litas</option>
+                                <option value="MOP">MOP - Macanese Pataca</option>
+                                <option value="MKD">MKD - Macedonian Denar</option>
+                                <option value="MGA">MGA - Malagasy Ariary</option>
+                                <option value="MWK">MWK - Malawian Kwacha</option>
+                                <option value="MYR">MYR - Malaysian Ringgit</option>
+                                <option value="MVR">MVR - Maldivian Rufiyaa</option>
+                                <option value="MRO">MRO - Mauritanian Ouguiya</option>
+                                <option value="MUR">MUR - Mauritian Rupee</option>
+                                <option value="MXN">MXN - Mexican Peso</option>
+                                <option value="MDL">MDL - Moldovan Leu</option>
+                                <option value="MNT">MNT - Mongolian Tugrik</option>
+                                <option value="MAD">MAD - Moroccan Dirham</option>
+                                <option value="MZM">MZM - Mozambican Metical</option>
+                                <option value="MMK">MMK - Myanmar Kyat</option>
+                                <option value="NAD">NAD - Namibian Dollar</option>
+                                <option value="NPR">NPR - Nepalese Rupee</option>
+                                <option value="ANG">ANG - Netherlands Antillean Guilder</option>
+                                <option value="TWD">TWD - New Taiwan Dollar</option>
+                                <option value="NZD">NZD - New Zealand Dollar</option>
+                                <option value="NIO">NIO - Nicaraguan CÃ³rdoba</option>
+                                <option value="NGN">NGN - Nigerian Naira</option>
+                                <option value="KPW">KPW - North Korean Won</option>
+                                <option value="NOK">NOK - Norwegian Krone</option>
+                                <option value="OMR">OMR - Omani Rial</option>
+                                <option value="PKR">PKR - Pakistani Rupee</option>
+                                <option value="PAB">PAB - Panamanian Balboa</option>
+                                <option value="PGK">PGK - Papua New Guinean Kina</option>
+                                <option value="PYG">PYG - Paraguayan Guarani</option>
+                                <option value="PEN">PEN - Peruvian Nuevo Sol</option>
+                                <option value="PHP">PHP - Philippine Peso</option>
+                                <option value="PLN">PLN - Polish Zloty</option>
+                                <option value="QAR">QAR - Qatari Rial</option>
+                                <option value="RON">RON - Romanian Leu</option>
+                                <option value="RUB">RUB - Russian Ruble</option>
+                                <option value="RWF">RWF - Rwandan Franc</option>
+                                <option value="SVC">SVC - Salvadoran ColÃ³n</option>
+                                <option value="WST">WST - Samoan Tala</option>
+                                <option value="SAR">SAR - Saudi Riyal</option>
+                                <option value="RSD">RSD - Serbian Dinar</option>
+                                <option value="SCR">SCR - Seychellois Rupee</option>
+                                <option value="SLL">SLL - Sierra Leonean Leone</option>
+                                <option value="SGD">SGD - Singapore Dollar</option>
+                                <option value="SKK">SKK - Slovak Koruna</option>
+                                <option value="SBD">SBD - Solomon Islands Dollar</option>
+                                <option value="SOS">SOS - Somali Shilling</option>
+                                <option value="ZAR">ZAR - South African Rand</option>
+                                <option value="KRW">KRW - South Korean Won</option>
+                                <option value="XDR">XDR - Special Drawing Rights</option>
+                                <option value="LKR">LKR - Sri Lankan Rupee</option>
+                                <option value="SHP">SHP - St. Helena Pound</option>
+                                <option value="SDG">SDG - Sudanese Pound</option>
+                                <option value="SRD">SRD - Surinamese Dollar</option>
+                                <option value="SZL">SZL - Swazi Lilangeni</option>
+                                <option value="SEK">SEK - Swedish Krona</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="SYP">SYP - Syrian Pound</option>
+                                <option value="STD">STD - São Tomé and Príncipe Dobra</option>
+                                <option value="TJS">TJS - Tajikistani Somoni</option>
+                                <option value="TZS">TZS - Tanzanian Shilling</option>
+                                <option value="THB">THB - Thai Baht</option>
+                                <option value="TOP">TOP - Tongan pa'anga</option>
+                                <option value="TTD">TTD - Trinidad & Tobago Dollar</option>
+                                <option value="TND">TND - Tunisian Dinar</option>
+                                <option value="TRY">TRY - Turkish Lira</option>
+                                <option value="TMT">TMT - Turkmenistani Manat</option>
+                                <option value="UGX">UGX - Ugandan Shilling</option>
+                                <option value="UAH">UAH - Ukrainian Hryvnia</option>
+                                <option value="AED">AED - United Arab Emirates Dirham</option>
+                                <option value="UYU">UYU - Uruguayan Peso</option>
+                                <option value="USD" selected="select">USD - US Dollar</option>
+                                <option value="UZS">UZS - Uzbekistan Som</option>
+                                <option value="VUV">VUV - Vanuatu Vatu</option>
+                                <option value="VEF">VEF - Venezuelan BolÃ­var</option>
+                                <option value="VND">VND - Vietnamese Dong</option>
+                                <option value="YER">YER - Yemeni Rial</option>
+                                <option value="ZMK">ZMK - Zambian Kwacha</option>
+                            </select>
+                        </div>
+
+                        <div class="md:w-[45%] sm:w-full sm:mt-6 md:mt-0 flex flex-col items-start md:justify-end h-full">
+                            <p id="result" class="font-bold text-mint font-Montserrat text-medium">NGN = 0 USD</p>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+
+                <div class="mt-6 w-[7rem]">
+                    <button type="button" id="convert" class="font-Serif text-center text-sailorBlue bg-mint font-medium sm:text-small md:text-normal rounded-lg md:px-7 md:py-3.5 sm:px-5 sm:py-3 hover:scale-95 mt-10 sm:mt-0">
+                        Convert
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BLOG SECTION -->
+    <section class="w-full sm:mb-10 flex items-center justify-center" id="blogs">
+
+        <div class="w-[90%] md:h-[100%] sm:h-[100%] flex flex-col md:gap-8 sm:gap-0">
+
+            <div class="flex h-[10%] items-start md:mb-0 sm:mb-10">
+                <h1 class="font-Serif text-mint font-bold text-big text-left w-full md:mt-0 sm:mt-10 md:mb-0 sm:mb-6 leading-none xl:text-big sm:text-semiBig">
+                    Blogs
+                </h1>
+            </div>
+
+            <div class="w-full h-[90%] flex items-center justify-between flex-wrap md:gap-6 sm:gap-4">
+
+                <article class="md:w-[48%] lg:w-[31.5%] h-fit sm:w-full md:h-[600px] bg-mint">
+
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/nairanote.jpg" alt="nairanote" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue font-Serif">PHOTOS: Buhari unveils Nigeria’s new naira notes</div>
+                            <p class="text-small font-Montserrat">
+                                President Muhammadu Buhari Wednesday unveiled the new notes of the three highest denominations of the Nigerian currency: N200, N500 and N1,000
+                                <span><a href="https://www.premiumtimesng.com/business/business-news/566914-photos-buhari-unveils-nigerias-new-naira-notes.html" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                    
+                </article>
+
+                <article class="md:w-[48%] sm:w-full md:h-[600px] lg:w-[31.5%] bg-mint">
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/ftx.jpg" alt="nairanote" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue font-Serif">FTX, Crypto Coin, what has happened in the past few weeks</div>
+                            <p class="text-small font-Montserrat">
+                                The past few weeks have been filled with devastating news about the crypto industry due to shocking revelations behind the scenes of FTX. The series of events
+                                <span><a href="https://guardian.ng/business-services/ftx-crypto-coin-what-has-happened-in-the-past-few-weeks-and-what-could-happen-in-the-future/" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                </article>
+
+                <article class="md:w-[48%] sm:w-full md:h-[600px] lg:w-[31.5%] bg-mint">
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/Naira-and-Dollar.jpg" alt="nairanote" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue font-Serif">Naira slips against dollar at official, black markets</div>
+                            <p class="text-small font-Montserrat">
+                                Currency dealers in Abuja said they bought a dollar for N770.00 and sold at N773.00 and above on Wednesday, as against N765.00 it traded on Tuesday.
+                                <span><a href="https://www.premiumtimesng.com/business/business-news/567079-naira-slips-against-dollar-at-official-black-markets.html" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                </article>
+
+                <article class="md:w-[48%] sm:w-full md:h-[600px] lg:w-[31.5%] bg-mint">
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/CBN-Godwin-Emefiele.webp" alt="CBN-Godwin-Emefiele" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue font-Serif">CBN to collaborate with EFCC, ICPC to track huge withdrawals</div>
+                            <p class="text-small font-Montserrat">
+                                The CBN governor, Godwin Emefiele, says the apex bank will make it difficult for large cash withdrawals at banks as well as collaborate with law enforcement agencies
+                                <span><a href="https://nairametrics.com/2022/11/24/naira-redesign-cbn-to-collaborate-with-efcc-icpc-to-track-huge-withdrawals-emefiele/" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                </article>
+
+                <article class="md:w-[48%] sm:w-full md:h-[600px] lg:w-[31.5%] bg-mint">
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/Food-market.webp" alt="nairanote" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue font-Serif">BREAKING: Nigeria’s GDP growth slows to 2.25% in Q3 2022</div>
+                            <p class="text-small font-Montserrat">
+                                Nigeria’s gross domestic product (GDP) grew by 2.25% year-on-year in Q3 2022, marking the slowest growth since the Covid-19 pandemic. 
+                                <span><a href="https://nairametrics.com/2022/11/24/breaking-nigerias-gdp-growth-slows-to-2-25-in-q3-2022/" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                </article>
+
+                <article class="md:w-[48%] sm:w-full md:h-[600px] lg:w-[31.5%] bg-mint">
+                    <div class="w-full h-[60%]">
+                        <img src="./src/images/fx.webp" alt="nairanote" class="w-full h-full object-cover">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 text-sailorBlue">World Bank: Global rate hikes could trigger 2023 recession</div>
+                            <p class="text-small font-Montserrat">
+                                Central banks have raised rates "with a degree of synchronicity not seen over the past five decades" to tackle soaring prices, it said.
+                                Raising rates makes borrowing more expensive to try to bring down the pace of price rises.
+                                <span><a href="https://www.ft.com/content/d3990fd7-c9f7-494f-9b68-3e7902df15e1" class="text-sailorBlue ml-1 hover:underline">Read more...</a></span>
+                            </p>
+                          </div>
+                    </div>
+                </article>
+
+
+            </div>
+            
+        </div>
+    </section>
+
+
+
+    <!-- CONTACT SECTION -->
+    <section class="flex w-[100%] lg:h-[100vh] md:h-[50vh] sm:mb-20 md:mb-0 items-center justify-center md:mt-0 sm:mt-20" id="contact">
+        <div class="w-[90%] h-[80%] flex flex-col">
+            <div>
+                <h1 class="font-bold text-mint font-Serif xl:text-big md:text-semiBig sm:text-semiBig">
+                    Contact us
+                </h1>
+            </div>
+    
+            <div class="h-[80%] flex md:flex-row sm:flex-col items-center justify-between">
+                <div class="flex items-center justify-center md:w-[40%] sm:w-[70%] md:mt-0 sm:mt-10 md:mb-0 sm:mb-10">
+                    <img src="./src/images/contact.png" alt="contact">
+                </div>
+
+                <div class="md:w-[50%] sm:w-full flex items-center justify-center">
+                    
+                    <form id="form" class="w-full flex flex-col justify-center items-center z-0"
+                    action="https://formsubmit.co/olumidmicheal7@gmail.com"
+                    method="POST"
+                    target="_blank">
+                        <div class="w-full flex items-center justify-between">
+                            <div class="form-control w-[48%]">
+                                <input type="text" id="firstname" placeholder="First Name" name="name" class="w-full h-[3.5rem] font-Montserrat font-bold text-small cursor-pointer pl-4 rounded" />
+                                <img src="./src/images/icon-error.svg" alt="error-icon" />
+                                <small class="font-Serif block text-small mt-2"></small>
+                            </div>
+                            <div class="form-control w-[48%]">
+                                <input type="text" id="lastname" placeholder="Last Name" name="name" class="w-full h-[3.5rem] font-Montserrat font-bold text-small cursor-pointer pl-4 rounded"/>
+                                <img src="./src/images/icon-error.svg" alt="error-icon" />
+                                <small class="font-Serif block text-small mt-2"></small>
+                            </div>
+                        </div>
+						<div class="form-control w-full">
+							<input type="email" id="email" placeholder="Email Address" name="email" class="w-full h-[3.5rem] font-Montserrat font-bold text-small cursor-pointer pl-4 rounded"/>
+							<img src="./src/images/icon-error.svg" alt="error-icon" />
+							<small class="font-Serif block text-small mt-2"></small>
+						</div>
+                        <div class="form-control w-full">
+							<input type="text" id="subject" placeholder="Subject" name="subject" class="w-full h-[3.5rem] font-Montserrat font-bold text-small cursor-pointer pl-4 rounded" />
+							<img src="./src/images/icon-error.svg" alt="error-icon" />
+							<small class="font-Serif block text-small mt-2"></small>
+						</div>
+                        <div class="w-full">
+                            <textarea name="message" id="message" name="comment" placeholder="Enter your message" cols="70" rows="5" class="w-full font-Montserrat font-bold text-small cursor-pointer pl-4 pt-4 rounded"></textarea>
+                        </div>
+	
+                        <button type="submit" class="font-Serif text-center text-sailorBlue bg-mint font-medium sm:text-small md:text-normal rounded-lg md:px-7 md:py-3.5 sm:px-5 sm:py-3 hover:scale-95 mt-10 sm:mt-3">Send</button>
+					</form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- FOOTER SECTION -->
+    <footer class="p-4 bg-white md:inline-block sm:flex sm:flex-col font-Montserrat w-full sm:p-6">
+        <div class="md:flex md:justify-between items-center">
+            <div class="mb-6 md:mb-0 md:w-[10%] sm:w-[30%] h-[20%]">
+                <a href="https://4rexify.netlify.app/" class="flex items-center">
+                    <img src="./src/images/4Rexify_Footer.png" class="mr-3 h-full" alt="FlowBite Logo" />
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gap-14 sm:grid-cols-1 md:grid-cols-3">
+                <div>
+                    <h2 class="md:mb-6 sm:mb-4 text-sm font-bold text-sailorBlue font-Serif uppercase">Resources</h2>
+                    <ul class="text-gray-600 dark:text-gray-400">
+                        <li class="md:mb-4 sm:mb-2">
+                            <a href="https://www.exchangerate-api.com/" class="hover:underline">ExchangeRate API</a>
+                        </li>
+                        <li class="md:mb-4 sm:mb-2">
+                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                        </li>
+                        <li class="md:mb-4 sm:mb-2">
+                            <a href="https://fontawesome.com/" class="hover:underline">Font-Awesome</a>
+                        </li>
+                        <li>
+                            <a href="https://icons8.com/illustrations" class="hover:underline">icons8 Illustration</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="md:mb-6 sm:mb-4 text-sm font-bold text-sailorBlue font-Serif uppercase">Follow us</h2>
+                    <ul class="text-gray-600 dark:text-gray-400">
+                        <li class="md:mb-4 sm:mb-2">
+                            <a href="https://github.com/codewithmide/4Rexify" class="hover:underline ">Github</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Discord</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="md:mb-6 sm:mb-4 text-sm font-bold text-sailorBlue font-Serif uppercase">Legal</h2>
+                    <ul class="text-gray-600 dark:text-gray-400">
+                        <li class="md:mb-4 sm:mb-2">
+                            <a href="#" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-sailorBlue sm:mx-auto lg:my-8" />
+        <div class="sm:flex sm:items-start sm:flex-col w-full sm:justify-between">
+            <span class="text-sm text-sailorBlue sm:mb-6">© 2022 <a href="https://4rexify.netlify.app/" class="hover:underline">4Rexify™</a>. All Rights Reserved.
+            </span>
+            <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+                <a href="#" class="text-sailorBlue">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                    <span class="sr-only">Facebook page</span>
+                </a>
+                <a href="#" class="text-sailorBlue">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                    <span class="sr-only">Instagram page</span>
+                </a>
+                <a href="#" class="text-sailorBlue">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                    <span class="sr-only">Twitter page</span>
+                </a>
+                <a href="https://github.com/codewithmide/4Rexify" class="text-sailorBlue">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                    <span class="sr-only">GitHub account</span>
+                </a>
+                <a href="#" class="hover:text-sailorBlue">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clip-rule="evenodd" /></svg>
+                    <span class="sr-only">Dribbbel account</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="/public/scripts/script.js"></script>
+    <script src="/public/scripts/form.js"></script>
+    <script src="/public/scripts/mobile.js"></script>
+    <script src="/public/scripts/converter.js"></script>
+    <script src="/public/scripts/currencies.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var typed = new Typed(".auto", {
+          strings: ["Made easier,", "Much better,", "With a single click."],
+          typeSpeed: 65,
+          backSpeed: 60,
+          loop: true
+        });
+    </script>
+</body>
+</html>
